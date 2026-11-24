@@ -1,0 +1,1667 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>桃红色界吧_影像社区_品牌官方首页</title>
+<meta name="description" content="桃红色界吧官方网站，专注桃红美学与视频创作的内容社区，汇聚原创影像、创作者与品牌故事。">
+<style>
+:root{
+  --tk-bg:#fff7fa;
+  --tk-surface:#ffffff;
+  --tk-ink:#3a1c2b;
+  --tk-ink-soft:#7a5568;
+  --tk-pink:#e8468b;
+  --tk-pink-deep:#b01f5f;
+  --tk-pink-soft:#ffd7e6;
+  --tk-lilac:#f3e6ff;
+  --tk-line:#f0d3e0;
+  --tk-gold:#f5b942;
+  --tk-radius:18px;
+  --tk-shadow:0 12px 30px -18px rgba(176,31,95,.45);
+  --tk-header-h:62px;
+  --tk-anno-h:42px;
+  --tk-pad:clamp(16px,4vw,44px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  background:var(--tk-bg);
+  color:var(--tk-ink);
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+ul{list-style:none}
+.tk-container{width:min(1180px,100%);margin:0 auto;padding-inline:var(--tk-pad)}
+.tk-skip{position:absolute;left:-9999px;top:0;background:var(--tk-pink);color:#fff;padding:8px 16px;z-index:200;border-radius:0 0 10px 0}
+.tk-skip:focus{left:0}
+
+/* ===== 吸顶：公告 + 页头 ===== */
+.tk-sticky-wrap{position:sticky;top:0;z-index:120;box-shadow:0 2px 18px -12px rgba(58,28,43,.5)}
+.tk-annobar{
+  background:linear-gradient(90deg,var(--tk-pink-deep),var(--tk-pink) 55%,#f2609b);
+  color:#fff;font-size:.83rem;
+  min-height:var(--tk-anno-h);
+  display:flex;align-items:center;
+}
+.tk-annobar .tk-container{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center}
+.tk-annobar-tag{
+  background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.5);
+  padding:1px 9px;border-radius:999px;font-size:.72rem;letter-spacing:.08em;white-space:nowrap;
+}
+.tk-annobar-text{font-weight:500;letter-spacing:.02em}
+.tk-annobar-text b{color:#fff3b0}
+.tk-annobar-link{text-decoration:underline;text-underline-offset:3px;opacity:.92;white-space:nowrap}
+.tk-annobar-link:hover{opacity:1}
+
+.tk-header{background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--tk-line)}
+.tk-header-inner{display:flex;align-items:center;gap:22px;height:var(--tk-header-h)}
+.tk-logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.tk-logo-mark{width:38px;height:38px}
+.tk-logo-word{display:flex;flex-direction:column;line-height:1.15}
+.tk-logo-word strong{font-size:1.06rem;letter-spacing:.04em}
+.tk-logo-word span{font-size:.62rem;color:var(--tk-ink-soft);letter-spacing:.34em}
+.tk-nav{display:flex;align-items:center;gap:4px;margin-left:auto}
+.tk-nav a{
+  padding:8px 13px;border-radius:999px;font-size:.92rem;color:var(--tk-ink-soft);
+  transition:.22s;white-space:nowrap;
+}
+.tk-nav a:hover,.tk-nav a:focus-visible{background:var(--tk-pink-soft);color:var(--tk-pink-deep)}
+.tk-search{
+  display:flex;align-items:center;background:var(--tk-bg);border:1px solid var(--tk-line);
+  border-radius:999px;padding:4px 4px 4px 14px;gap:6px;transition:.25s;min-width:190px;
+}
+.tk-search:focus-within{border-color:var(--tk-pink);box-shadow:0 0 0 3px rgba(232,70,139,.14)}
+.tk-search input{border:none;outline:none;background:none;font-size:.88rem;width:100%;color:var(--tk-ink)}
+.tk-search input::placeholder{color:#bba2b0}
+.tk-search-btn{
+  background:var(--tk-pink);color:#fff;border-radius:999px;width:32px;height:32px;
+  display:grid;place-items:center;flex-shrink:0;transition:.22s;
+}
+.tk-search-btn:hover{background:var(--tk-pink-deep)}
+.tk-burger{display:none;width:42px;height:42px;border-radius:12px;border:1px solid var(--tk-line);place-items:center}
+.tk-burger span{display:block;width:18px;height:2px;background:var(--tk-ink);margin:2.5px 0;transition:.25s;border-radius:2px}
+.tk-burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.tk-burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.tk-burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.tk-search-note{
+  display:none;background:#fff4f8;border-bottom:1px solid var(--tk-line);
+  font-size:.85rem;color:var(--tk-pink-deep);padding:9px var(--tk-pad);text-align:center;
+}
+.tk-search-note.is-on{display:block}
+.tk-mobile-menu{display:none;border-top:1px solid var(--tk-line);background:#fff}
+.tk-mobile-menu.is-open{display:block}
+.tk-mobile-menu ul{padding:10px var(--tk-pad) 18px;display:grid;gap:2px}
+.tk-mobile-menu a{display:block;padding:11px 12px;border-radius:12px;font-size:.95rem}
+.tk-mobile-menu a:hover{background:var(--tk-pink-soft);color:var(--tk-pink-deep)}
+
+/* ===== 通用 section ===== */
+.tk-section{padding-block:clamp(48px,7vw,84px);scroll-margin-top:calc(var(--tk-anno-h) + var(--tk-header-h) + 8px)}
+.tk-section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:34px}
+.tk-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;font-size:.76rem;letter-spacing:.26em;
+  color:var(--tk-pink-deep);text-transform:uppercase;font-weight:700;margin-bottom:10px;
+}
+.tk-eyebrow::before{content:"";width:22px;height:2px;background:var(--tk-pink);border-radius:2px}
+.tk-h2{font-size:clamp(1.5rem,3.2vw,2.15rem);letter-spacing:.01em;line-height:1.35;font-weight:800}
+.tk-h2 em{font-style:normal;color:var(--tk-pink);}
+.tk-section-desc{color:var(--tk-ink-soft);font-size:.94rem;max-width:56ch;margin-top:8px}
+.tk-link-more{color:var(--tk-pink-deep);font-size:.9rem;font-weight:600;border-bottom:1px solid transparent;transition:.2s}
+.tk-link-more:hover{border-color:var(--tk-pink-deep)}
+
+/* ===== Hero ===== */
+.tk-hero{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(1100px 560px at 88% -10%, rgba(232,70,139,.16), transparent 60%),
+    radial-gradient(700px 420px at 0% 110%, rgba(243,230,255,.9), transparent 65%),
+    linear-gradient(180deg,#fffdfe,#fff4f8);
+}
+.tk-hero-grid{
+  display:grid;grid-template-columns:minmax(0,4fr) minmax(0,6fr);
+  gap:clamp(26px,4vw,58px);align-items:center;
+  padding-block:clamp(38px,5.5vw,74px);
+}
+.tk-hero-badge{
+  display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--tk-line);
+  border-radius:999px;padding:5px 14px;font-size:.78rem;color:var(--tk-pink-deep);font-weight:600;
+  box-shadow:0 4px 14px -8px rgba(176,31,95,.4);margin-bottom:18px;
+}
+.tk-dot{width:7px;height:7px;border-radius:50%;background:var(--tk-pink);box-shadow:0 0 0 4px rgba(232,70,139,.16)}
+.tk-h1{
+  font-size:clamp(2.25rem,5.6vw,3.9rem);line-height:1.08;font-weight:900;letter-spacing:.005em;
+  margin-bottom:14px;
+}
+.tk-h1 .tk-h1-hi{
+  background:linear-gradient(100deg,var(--tk-pink-deep),#f2609b 60%,#c94cff);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.tk-hero-lead{font-size:clamp(1rem,1.5vw,1.12rem);color:var(--tk-ink-soft);max-width:44ch;margin-bottom:12px;font-weight:500}
+.tk-hero-intro{font-size:.93rem;color:var(--tk-ink-soft);max-width:48ch;line-height:1.85;margin-bottom:22px}
+.tk-hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:30px}
+.tk-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:12px 24px;border-radius:999px;font-size:.94rem;font-weight:700;
+  transition:.22s;border:1px solid transparent;
+}
+.tk-btn-primary{background:linear-gradient(120deg,var(--tk-pink),var(--tk-pink-deep));color:#fff;box-shadow:0 10px 24px -12px rgba(176,31,95,.8)}
+.tk-btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 30px -14px rgba(176,31,95,.85)}
+.tk-btn-ghost{background:#fff;border-color:var(--tk-line);color:var(--tk-ink)}
+.tk-btn-ghost:hover{border-color:var(--tk-pink);color:var(--tk-pink-deep);transform:translateY(-2px)}
+.tk-hero-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;max-width:480px}
+.tk-stat{background:#fff;border:1px solid var(--tk-line);border-radius:14px;padding:12px 14px;box-shadow:var(--tk-shadow)}
+.tk-stat b{display:block;font-size:clamp(1.1rem,2.1vw,1.42rem);color:var(--tk-pink-deep);letter-spacing:.01em;line-height:1.2}
+.tk-stat span{font-size:.74rem;color:var(--tk-ink-soft);letter-spacing:.04em}
+.tk-hero-visual{position:relative}
+.tk-hero-frame{
+  border-radius:26px;overflow:hidden;border:1px solid #fff;
+  box-shadow:0 40px 70px -40px rgba(176,31,95,.55),0 0 0 8px rgba(255,255,255,.7);
+  background:#fff;
+}
+.tk-hero-frame svg{width:100%;height:auto;aspect-ratio:16/11}
+.tk-hero-float{
+  position:absolute;left:-8px;bottom:26px;background:rgba(255,255,255,.94);
+  backdrop-filter:blur(10px);border:1px solid var(--tk-line);border-radius:16px;
+  padding:10px 16px;box-shadow:0 18px 38px -22px rgba(58,28,43,.6);
+  display:flex;align-items:center;gap:10px;font-size:.8rem;
+}
+.tk-hero-float .tk-pulse{width:9px;height:9px;border-radius:50%;background:#28c07d;box-shadow:0 0 0 4px rgba(40,192,125,.18)}
+.tk-hero-float b{color:var(--tk-pink-deep)}
+.tk-hero-tagline{
+  position:absolute;right:14px;top:14px;background:rgba(176,31,95,.92);color:#fff;
+  border-radius:999px;font-size:.72rem;letter-spacing:.14em;padding:5px 14px;
+}
+
+/* ===== 焦点内容（视频区：一幅大图 + 文字列表）===== */
+.tk-focus-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(20px,3vw,36px);align-items:start}
+.tk-feature-card{
+  background:#fff;border-radius:var(--tk-radius);overflow:hidden;
+  border:1px solid var(--tk-line);box-shadow:var(--tk-shadow);transition:.3s;
+}
+.tk-feature-card:hover{transform:translateY(-4px);box-shadow:0 26px 50px -28px rgba(176,31,95,.6)}
+.tk-feature-cover{position:relative;background:#ffe9f2}
+.tk-feature-cover svg{width:100%;height:auto;aspect-ratio:16/9}
+.tk-play{
+  position:absolute;inset:0;display:grid;place-items:center;
+}
+.tk-play span{
+  width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.9);
+  display:grid;place-items:center;box-shadow:0 12px 28px -10px rgba(58,28,43,.6);
+  transition:.25s;
+}
+.tk-play span::after{
+  content:"";width:0;height:0;border-left:19px solid var(--tk-pink-deep);
+  border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:5px;
+}
+.tk-feature-card:hover .tk-play span{transform:scale(1.08);background:#fff}
+.tk-feature-body{padding:20px 22px 22px}
+.tk-tag-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.tk-tag{font-size:.72rem;background:var(--tk-pink-soft);color:var(--tk-pink-deep);border-radius:999px;padding:3px 11px;font-weight:600}
+.tk-tag.is-lilac{background:var(--tk-lilac);color:#7b3fb5}
+.tk-tag.is-gold{background:#fff2d2;color:#a86f00}
+.tk-feature-title{font-size:clamp(1.12rem,2vw,1.38rem);font-weight:800;line-height:1.4;margin-bottom:8px}
+.tk-feature-desc{color:var(--tk-ink-soft);font-size:.9rem;margin-bottom:16px}
+.tk-meta-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:.8rem;color:var(--tk-ink-soft);margin-bottom:14px}
+.tk-avatar-xs{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:.7rem;font-weight:700;flex-shrink:0}
+.tk-actions{display:flex;gap:8px;flex-wrap:wrap}
+.tk-mini-btn{
+  display:inline-flex;align-items:center;gap:6px;border:1px solid var(--tk-line);
+  border-radius:999px;padding:6px 14px;font-size:.8rem;color:var(--tk-ink-soft);
+  transition:.2s;background:#fff;
+}
+.tk-mini-btn:hover{border-color:var(--tk-pink);color:var(--tk-pink-deep)}
+.tk-mini-btn.is-liked{background:var(--tk-pink-soft);border-color:var(--tk-pink);color:var(--tk-pink-deep)}
+.tk-mini-btn.is-saved{background:#fff2d2;border-color:var(--tk-gold);color:#a86f00}
+
+.tk-list-side{display:grid;gap:12px}
+.tk-list-item{
+  display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:start;
+  background:#fff;border:1px solid var(--tk-line);border-radius:14px;padding:14px 16px;
+  transition:.24s;
+}
+.tk-list-item:hover{border-color:#f2a9c6;transform:translateX(3px)}
+.tk-rank{
+  width:30px;height:30px;border-radius:9px;display:grid;place-items:center;
+  font-weight:800;font-size:.85rem;background:var(--tk-pink-soft);color:var(--tk-pink-deep);flex-shrink:0;
+}
+.tk-list-item:nth-child(1) .tk-rank{background:linear-gradient(135deg,#f2609b,#b01f5f);color:#fff}
+.tk-list-item:nth-child(2) .tk-rank{background:#ffd7e6;color:var(--tk-pink-deep)}
+.tk-list-item:nth-child(3) .tk-rank{background:#fff2d2;color:#a86f00}
+.tk-list-title{font-size:.94rem;font-weight:700;line-height:1.45;margin-bottom:3px}
+.tk-list-sub{font-size:.78rem;color:var(--tk-ink-soft);display:flex;gap:10px;flex-wrap:wrap}
+
+/* ===== 视频网格（三列）===== */
+.tk-video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,26px)}
+.tk-video-card{
+  background:#fff;border:1px solid var(--tk-line);border-radius:16px;overflow:hidden;
+  display:flex;flex-direction:column;transition:.28s;
+}
+.tk-video-card:hover{transform:translateY(-5px);box-shadow:0 24px 44px -28px rgba(176,31,95,.55)}
+.tk-video-card-cover{background:#ffeef5;position:relative}
+.tk-video-card-cover svg{width:100%;height:auto;aspect-ratio:16/9}
+.tk-video-card-body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:9px;flex:1}
+.tk-video-card h3{font-size:.98rem;line-height:1.45;font-weight:800}
+.tk-video-card p{font-size:.82rem;color:var(--tk-ink-soft);flex:1}
+.tk-video-card .tk-meta-row{margin-bottom:0}
+
+/* ===== 关键词解析（长文）===== */
+.tk-essay{background:#fff;border:1px solid var(--tk-line);border-radius:22px;padding:clamp(24px,4vw,46px);box-shadow:var(--tk-shadow)}
+.tk-essay h3{font-size:1.14rem;font-weight:800;margin:26px 0 10px;color:var(--tk-pink-deep)}
+.tk-essay h3:first-of-type{margin-top:6px}
+.tk-essay p{color:var(--tk-ink-soft);font-size:.94rem;line-height:1.95;margin-bottom:12px;text-align:justify}
+.tk-essay strong{color:var(--tk-ink)}
+.tk-essay-quote{
+  border-left:3px solid var(--tk-pink);background:#fff5f9;border-radius:0 12px 12px 0;
+  padding:14px 18px;margin:18px 0;font-size:.9rem;color:var(--tk-ink);
+}
+
+/* ===== 专题 ===== */
+.tk-topic-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2.4vw,26px)}
+.tk-topic-card{
+  background:#fff;border:1px solid var(--tk-line);border-radius:18px;padding:22px;
+  display:flex;flex-direction:column;gap:12px;transition:.26s;
+}
+.tk-topic-card:hover{border-color:#f2a9c6;box-shadow:var(--tk-shadow)}
+.tk-topic-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.tk-topic-card h3{font-size:1.05rem;font-weight:800;line-height:1.4}
+.tk-status{font-size:.7rem;border-radius:999px;padding:2px 10px;font-weight:700;white-space:nowrap}
+.tk-status.on{background:#e3f8ee;color:#127a4b}
+.tk-status.wait{background:#fff2d2;color:#a86f00}
+.tk-topic-card>p{font-size:.85rem;color:var(--tk-ink-soft)}
+.tk-topic-list{display:grid;gap:8px;margin-top:2px}
+.tk-topic-list li{font-size:.83rem;color:var(--tk-ink-soft);display:flex;gap:8px;align-items:baseline}
+.tk-topic-list li::before{content:"·";color:var(--tk-pink);font-weight:900;font-size:1.1rem;line-height:1}
+.tk-topic-cover{border-radius:12px;overflow:hidden}
+.tk-topic-cover svg{width:100%;height:auto;aspect-ratio:16/7}
+
+/* ===== 作者矩阵（双列简介）===== */
+.tk-author-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,2.2vw,22px)}
+.tk-author-card{
+  background:#fff;border:1px solid var(--tk-line);border-radius:18px;padding:20px;
+  display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start;
+  transition:.26s;cursor:pointer;
+}
+.tk-author-card:hover{transform:translateY(-3px);box-shadow:var(--tk-shadow);border-color:#f2a9c6}
+.tk-avatar-lg{
+  width:58px;height:58px;border-radius:50%;display:grid;place-items:center;
+  color:#fff;font-weight:800;font-size:1.05rem;flex-shrink:0;
+}
+.tk-author-name{font-size:1rem;font-weight:800;display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:2px}
+.tk-author-field{font-size:.76rem;color:var(--tk-pink-deep);background:var(--tk-pink-soft);border-radius:999px;padding:2px 10px;font-weight:600}
+.tk-author-bio{font-size:.83rem;color:var(--tk-ink-soft);margin-top:6px;line-height:1.8}
+.tk-author-nums{display:flex;gap:14px;margin-top:8px;font-size:.76rem;color:var(--tk-ink-soft)}
+.tk-author-nums b{color:var(--tk-ink)}
+
+/* ===== 评论（双列短评）===== */
+.tk-comment-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 18px}
+.tk-comment{
+  background:#fff;border:1px solid var(--tk-line);border-radius:14px;padding:16px 18px;
+  display:flex;gap:12px;align-items:flex-start;
+}
+.tk-comment .tk-avatar-sm{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-size:.78rem;flex-shrink:0}
+.tk-comment-name{font-size:.85rem;font-weight:700;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tk-stars{color:var(--tk-gold);font-size:.76rem;letter-spacing:.06em}
+.tk-comment p{font-size:.84rem;color:var(--tk-ink-soft);margin-top:4px}
+.tk-comment-time{font-size:.72rem;color:#b79bab;margin-top:6px}
+
+/* ===== 企业动态 / 更新日志 ===== */
+.tk-log{display:grid;gap:12px}
+.tk-log-item{
+  display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start;
+  background:#fff;border:1px solid var(--tk-line);border-radius:14px;padding:16px 18px;
+}
+.tk-log-date{font-size:.75rem;color:var(--tk-pink-deep);font-weight:700;background:var(--tk-pink-soft);border-radius:8px;padding:6px 10px;text-align:center;white-space:nowrap;line-height:1.3}
+.tk-log-item h3{font-size:.94rem;font-weight:700;margin-bottom:3px}
+.tk-log-item p{font-size:.82rem;color:var(--tk-ink-soft)}
+
+/* ===== FAQ ===== */
+.tk-faq{display:grid;gap:10px;max-width:860px}
+.tk-faq details{
+  background:#fff;border:1px solid var(--tk-line);border-radius:14px;padding:14px 18px;transition:.2s;
+}
+.tk-faq details[open]{border-color:#f2a9c6;box-shadow:var(--tk-shadow)}
+.tk-faq summary{
+  cursor:pointer;font-weight:700;font-size:.92rem;list-style:none;
+  display:flex;justify-content:space-between;align-items:center;gap:14px;
+}
+.tk-faq summary::-webkit-details-marker{display:none}
+.tk-faq summary::after{content:"+";color:var(--tk-pink);font-size:1.2rem;font-weight:700;transition:.2s;line-height:1}
+.tk-faq details[open] summary::after{transform:rotate(45deg)}
+.tk-faq details p{font-size:.85rem;color:var(--tk-ink-soft);margin-top:10px;line-height:1.85}
+
+/* ===== 合作墙 ===== */
+.tk-partners{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.tk-partner{
+  background:#fff;border:1px solid var(--tk-line);border-radius:14px;padding:18px 14px;
+  text-align:center;font-size:.85rem;font-weight:700;color:var(--tk-ink-soft);transition:.22s;
+}
+.tk-partner:hover{color:var(--tk-pink-deep);border-color:var(--tk-pink);transform:translateY(-2px)}
+.tk-partner span{display:block;font-size:.68rem;font-weight:500;color:#b79bab;margin-top:2px;letter-spacing:.06em}
+
+/* ===== CTA 投稿 ===== */
+.tk-cta{
+  background:linear-gradient(115deg,#3a1c2b,#7a2a52 55%,#b01f5f);
+  color:#fff;border-radius:24px;padding:clamp(28px,5vw,52px);
+  display:flex;align-items:center;justify-content:space-between;gap:26px;flex-wrap:wrap;
+  position:relative;overflow:hidden;
+}
+.tk-cta::after{
+  content:"";position:absolute;width:320px;height:320px;border-radius:50%;
+  background:radial-gradient(circle,rgba(242,96,155,.55),transparent 68%);
+  right:-80px;top:-120px;pointer-events:none;
+}
+.tk-cta h2{font-size:clamp(1.3rem,2.8vw,1.85rem);font-weight:800;line-height:1.4;margin-bottom:8px}
+.tk-cta p{font-size:.9rem;color:rgba(255,255,255,.82);max-width:54ch}
+.tk-cta-actions{display:flex;gap:12px;flex-wrap:wrap;position:relative;z-index:1}
+.tk-cta .tk-btn-ghost{background:transparent;border-color:rgba(255,255,255,.45);color:#fff}
+.tk-cta .tk-btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+.tk-cta .tk-btn-primary{background:#fff;color:var(--tk-pink-deep);box-shadow:0 12px 26px -12px rgba(0,0,0,.5)}
+
+/* ===== 页脚 ===== */
+.tk-footer{background:#2a1420;color:#e9d7e0;padding-block:52px 26px;margin-top:20px}
+.tk-footer-grid{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));gap:30px;margin-bottom:34px}
+.tk-footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.tk-footer-brand strong{font-size:1.02rem;color:#fff}
+.tk-footer-brand span{font-size:.62rem;letter-spacing:.3em;color:#c9a9ba}
+.tk-footer p{font-size:.82rem;color:#bda3b1;line-height:1.9;max-width:42ch}
+.tk-footer h3{font-size:.86rem;color:#fff;margin-bottom:12px;letter-spacing:.06em;font-weight:700}
+.tk-footer li{font-size:.82rem;color:#bda3b1;margin-bottom:7px}
+.tk-footer a:hover{color:#f7a8c8}
+.tk-footer-bottom{
+  border-top:1px solid rgba(255,255,255,.1);padding-top:18px;
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.76rem;color:#a98b99;
+}
+.tk-footer-badges{display:flex;gap:14px;flex-wrap:wrap}
+.tk-footer-badges span{border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:2px 12px;font-size:.7rem}
+
+/* ===== 回到顶部 & Toast ===== */
+.tk-top{
+  position:fixed;right:22px;bottom:24px;width:46px;height:46px;border-radius:50%;
+  background:var(--tk-pink-deep);color:#fff;display:grid;place-items:center;
+  box-shadow:0 14px 30px -12px rgba(176,31,95,.9);z-index:110;
+  opacity:0;visibility:hidden;transform:translateY(12px);transition:.3s;font-size:1.05rem;
+}
+.tk-top.is-on{opacity:1;visibility:visible;transform:none}
+.tk-toast{
+  position:fixed;left:50%;bottom:34px;transform:translate(-50%,20px);
+  background:rgba(42,20,32,.95);color:#fff;padding:11px 22px;border-radius:999px;
+  font-size:.86rem;z-index:200;opacity:0;visibility:hidden;transition:.3s;
+  box-shadow:0 18px 36px -16px rgba(0,0,0,.6);max-width:86vw;text-align:center;
+}
+.tk-toast.is-on{opacity:1;visibility:visible;transform:translate(-50%,0)}
+
+/* ===== 弹窗 ===== */
+.tk-modal{
+  position:fixed;inset:0;background:rgba(42,20,32,.55);backdrop-filter:blur(4px);
+  display:none;place-items:center;z-index:300;padding:20px;
+}
+.tk-modal.is-on{display:grid}
+.tk-modal-card{
+  background:#fff;border-radius:20px;width:min(480px,100%);padding:26px;position:relative;
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.5);max-height:86vh;overflow:auto;
+}
+.tk-modal-card h3{font-size:1.08rem;font-weight:800;margin-bottom:8px}
+.tk-modal-card p{font-size:.87rem;color:var(--tk-ink-soft);margin-bottom:14px;line-height:1.8}
+.tk-modal-close{position:absolute;right:12px;top:10px;font-size:1.3rem;color:#b79bab;width:34px;height:34px;display:grid;place-items:center;border-radius:50%}
+.tk-modal-close:hover{background:var(--tk-pink-soft);color:var(--tk-pink-deep)}
+.tk-field{display:block;margin-bottom:12px}
+.tk-field span{font-size:.8rem;font-weight:700;display:block;margin-bottom:5px}
+.tk-field input,.tk-field textarea{
+  width:100%;border:1px solid var(--tk-line);border-radius:10px;padding:10px 12px;
+  font-family:inherit;font-size:.88rem;outline:none;background:#fffdfe;color:var(--tk-ink);
+}
+.tk-field input:focus,.tk-field textarea:focus{border-color:var(--tk-pink);box-shadow:0 0 0 3px rgba(232,70,139,.13)}
+.tk-share-row{display:flex;gap:10px;flex-wrap:wrap}
+.tk-share-row .tk-mini-btn{flex:1;justify-content:center}
+
+/* ===== 响应式 ===== */
+@media (max-width:980px){
+  .tk-hero-grid{grid-template-columns:1fr;gap:30px}
+  .tk-hero-visual{order:-1}
+  .tk-focus-grid{grid-template-columns:1fr}
+  .tk-video-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tk-footer-grid{grid-template-columns:1fr 1fr}
+  .tk-nav{display:none}
+  .tk-search{display:none}
+  .tk-burger{display:grid;margin-left:auto}
+  .tk-topic-grid{grid-template-columns:1fr}
+}
+@media (max-width:720px){
+  .tk-video-grid{grid-template-columns:1fr}
+  .tk-author-grid{grid-template-columns:1fr}
+  .tk-comment-grid{grid-template-columns:1fr}
+  .tk-partners{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tk-hero-stats{grid-template-columns:1fr 1fr}
+  .tk-footer-grid{grid-template-columns:1fr}
+  .tk-annobar .tk-container{justify-content:flex-start}
+  .tk-hero-float{left:8px;bottom:12px;font-size:.74rem}
+  .tk-anno-hide{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+<a class="tk-skip" href="#tk-main">跳到主要内容</a>
+
+<!-- ===== 吸顶区：公告条 + 页头 ===== -->
+<div class="tk-sticky-wrap">
+  <div class="tk-annobar" role="region" aria-label="站内公告">
+    <div class="tk-container">
+      <span class="tk-annobar-tag">官方发布</span>
+      <span class="tk-annobar-text">「桃红色界吧」冬季企划 <b>《粉雾纪事》</b> 首批 12 支原创短片已上线，开放投稿中</span>
+      <a class="tk-annobar-link tk-anno-hide" href="#tk-topics">查看企划 →</a>
+    </div>
+  </div>
+
+  <header class="tk-header">
+    <div class="tk-container tk-header-inner">
+      <a class="tk-logo" href="#tk-top" aria-label="桃红色界吧官方网站首页">
+        <svg class="tk-logo-mark" viewBox="0 0 40 40" role="img" aria-label="桃红色界吧品牌标识">
+          <defs>
+            <linearGradient id="tkLg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#f2609b"/>
+              <stop offset="1" stop-color="#b01f5f"/>
+            </linearGradient>
+          </defs>
+          <rect x="1" y="1" width="38" height="38" rx="12" fill="url(#tkLg)"/>
+          <circle cx="20" cy="18" r="7.4" fill="none" stroke="#fff" stroke-width="2.1"/>
+          <path d="M20 10.6 v14.8" stroke="#fff" stroke-width="0" />
+          <path d="M20 14.6 l5.2 3.1 v6.2 l-5.2 3.1 -5.2 -3.1 v-6.2 z" fill="none" stroke="#ffe1ee" stroke-width="1.4"/>
+          <path d="M12.4 27.6 q7.6 4 15.2 0" stroke="#ffe1ee" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+        </svg>
+        <span class="tk-logo-word"><strong>桃红色界吧</strong><span>PINKREALM</span></span>
+      </a>
+
+      <nav class="tk-nav" aria-label="主导航">
+        <a href="#tk-focus">焦点</a>
+        <a href="#tk-videos">视频</a>
+        <a href="#tk-topic">专题</a>
+        <a href="#tk-authors">创作者</a>
+        <a href="#tk-voices">口碑</a>
+        <a href="#tk-faq">帮助</a>
+      </nav>
+
+      <div class="tk-search" role="search">
+        <input type="search" id="tkSearchInput" placeholder="搜索影片 / 创作者 / 专题" aria-label="站内搜索">
+        <button class="tk-search-btn" id="tkSearchBtn" aria-label="执行搜索">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></svg>
+        </button>
+      </div>
+
+      <button class="tk-burger" id="tkBurger" aria-label="展开导航菜单" aria-expanded="false" aria-controls="tkMobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="tk-search-note" id="tkSearchNote" role="status" aria-live="polite"></div>
+    <div class="tk-mobile-menu" id="tkMobileMenu">
+      <ul>
+        <li><a href="#tk-focus">焦点内容</a></li>
+        <li><a href="#tk-videos">视频精选</a></li>
+        <li><a href="#tk-topic">品牌专题</a></li>
+        <li><a href="#tk-authors">创作者矩阵</a></li>
+        <li><a href="#tk-voices">用户口碑</a></li>
+        <li><a href="#tk-news">企业动态</a></li>
+        <li><a href="#tk-faq">常见问题</a></li>
+        <li><a href="#tk-submit">投稿与合作</a></li>
+      </ul>
+    </div>
+  </header>
+</div>
+
+<main id="tk-main">
+
+  <!-- ===== Hero ===== -->
+  <section class="tk-hero" id="tk-top" aria-labelledby="tkHeroTitle">
+    <div class="tk-container tk-hero-grid">
+      <div class="tk-hero-copy">
+        <span class="tk-hero-badge"><span class="tk-dot" aria-hidden="true"></span>桃红色界吧 · 官方网站</span>
+        <h1 class="tk-h1" id="tkHeroTitle"><span class="tk-h1-hi">桃红色界吧</span></h1>
+        <p class="tk-hero-lead">以桃红为名的影像社区，让每一种真实的红都被看见。</p>
+        <p class="tk-hero-intro">桃红色界吧是专注桃红美学与女性视角影像的企业级内容平台。我们深耕垂直领域，用原创、正版、高清的作品连接创作者与观众，持续运营一个温暖、多元、值得信赖的内容生态，让「桃红色界吧」成为用户首选的影像灵感入口。</p>
+        <div class="tk-hero-actions">
+          <a class="tk-btn tk-btn-primary" href="#tk-videos">开始观看</a>
+          <button class="tk-btn tk-btn-ghost" id="tkSubscribeBtn" type="button">订阅内容日历</button>
+        </div>
+        <div class="tk-hero-stats" aria-label="品牌核心数据">
+          <div class="tk-stat"><b data-count="8200">0</b><span>原创影片（支）</span></div>
+          <div class="tk-stat"><b data-count="126">0</b><span>签约创作者（位）</span></div>
+          <div class="tk-stat"><b data-count="380">0</b><span>月活跃观众（万）</span></div>
+        </div>
+      </div>
+
+      <div class="tk-hero-visual">
+        <div class="tk-hero-frame">
+          <span class="tk-hero-tagline">精选主视觉</span>
+          <svg viewBox="0 0 640 440" role="img" aria-label="桃红色界吧首屏主视觉：粉雾光影中的城市天台与拍摄者剪影">
+            <defs>
+              <linearGradient id="tkSky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#3a1c2b"/>
+                <stop offset=".42" stop-color="#8a2b5a"/>
+                <stop offset=".72" stop-color="#e8468b"/>
+                <stop offset="1" stop-color="#ffd7e6"/>
+              </linearGradient>
+              <radialGradient id="tkGlow" cx=".68" cy=".34" r=".44">
+                <stop offset="0" stop-color="#fff3b0" stop-opacity=".95"/>
+                <stop offset=".55" stop-color="#f2609b" stop-opacity=".45"/>
+                <stop offset="1" stop-color="#f2609b" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="tkBuild" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#2a1420"/>
+                <stop offset="1" stop-color="#5d1f3f"/>
+              </linearGradient>
+            </defs>
+            <rect width="640" height="440" fill="url(#tkSky)"/>
+            <circle cx="436" cy="150" r="120" fill="url(#tkGlow)"/>
+            <circle cx="436" cy="150" r="52" fill="#ffe9a9" opacity=".9"/>
+            <g opacity=".5" fill="#ffd7e6">
+              <circle cx="120" cy="82" r="2.2"/><circle cx="212" cy="52" r="1.6"/><circle cx="318" cy="96" r="2"/>
+              <circle cx="520" cy="66" r="1.8"/><circle cx="576" cy="120" r="2.2"/><circle cx="86" cy="160" r="1.5"/>
+            </g>
+            <g fill="url(#tkBuild)">
+              <rect x="0" y="286" width="96" height="154"/>
+              <rect x="106" y="252" width="74" height="188"/>
+              <rect x="190" y="304" width="88" height="136"/>
+              <rect x="288" y="266" width="66" height="174"/>
+              <rect x="364" y="312" width="82" height="128"/>
+              <rect x="456" y="270" width="92" height="170"/>
+              <rect x="558" y="300" width="82" height="140"/>
+            </g>
+            <g fill="#ffd7e6" opacity=".75">
+              <rect x="20" y="304" width="10" height="10"/><rect x="44" y="304" width="10" height="10"/>
+              <rect x="122" y="276" width="9" height="9"/><rect x="144" y="276" width="9" height="9"/>
+              <rect x="208" y="322" width="11" height="11"/><rect x="234" y="322" width="11" height="11"/>
+              <rect x="476" y="292" width="10" height="10"/><rect x="502" y="292" width="10" height="10"/>
+              <rect x="580" y="320" width="9" height="9"/><rect x="600" y="320" width="9" height="9"/>
+            </g>
+            <path d="M0 368 Q160 336 320 366 T640 356 V440 H0 Z" fill="#2a1420" opacity=".92"/>
+            <g>
+              <circle cx="330" cy="312" r="13" fill="#3a1c2b"/>
+              <path d="M318 326 q12 -8 24 0 l6 34 h-36 z" fill="#3a1c2b"/>
+              <path d="M344 330 l26 -14" stroke="#ffe1ee" stroke-width="4" stroke-linecap="round"/>
+              <rect x="362" y="300" width="30" height="20" rx="4" fill="#ffe1ee"/>
+              <circle cx="377" cy="310" r="6" fill="#b01f5f"/>
+            </g>
+            <g opacity=".85">
+              <path d="M46 396 q40 -16 80 0" stroke="#f7a8c8" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <path d="M500 402 q46 -18 92 0" stroke="#f7a8c8" stroke-width="2" fill="none" stroke-linecap="round"/>
+            </g>
+          </svg>
+        </div>
+        <div class="tk-hero-float">
+          <span class="tk-pulse" aria-hidden="true"></span>
+          <span>今晚 20:00 线上放映 · <b>《粉雾纪事》</b></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 焦点内容：一幅大图 + 文字列表 ===== -->
+  <section class="tk-section" id="tk-focus" aria-labelledby="tkFocusTitle">
+    <div class="tk-container">
+      <div class="tk-section-head">
+        <div>
+          <span class="tk-eyebrow">Focus 焦点</span>
+          <h2 class="tk-h2" id="tkFocusTitle">本周焦点 · <em>桃红色界吧</em>编辑精选</h2>
+          <p class="tk-section-desc">编辑团队从上千支投稿中挑出本季最具代表性的原创作品，呈现桃红影像的层次与力量。</p>
+        </div>
+        <a class="tk-link-more" href="#tk-videos">全部焦点内容 →</a>
+      </div>
+
+      <div class="tk-focus-grid">
+        <article class="tk-feature-card">
+          <div class="tk-feature-cover">
+            <svg viewBox="0 0 640 360" role="img" aria-label="焦点影片《粉雾纪事》封面：清晨粉色雾气笼罩的旧街区与骑行者">
+              <defs>
+                <linearGradient id="tkFog" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#ffe3ef"/>
+                  <stop offset=".55" stop-color="#f7a8c8"/>
+                  <stop offset="1" stop-color="#b01f5f"/>
+                </linearGradient>
+                <linearGradient id="tkFog2" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#fff" stop-opacity=".7"/>
+                  <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <rect width="640" height="360" fill="url(#tkFog)"/>
+              <circle cx="150" cy="96" r="46" fill="#fff5f9" opacity=".85"/>
+              <g fill="#7a2a52" opacity=".82">
+                <rect x="40" y="196" width="120" height="164" rx="4"/>
+                <rect x="176" y="164" width="88" height="196" rx="4"/>
+                <rect x="282" y="214" width="104" height="146" rx="4"/>
+                <rect x="404" y="178" width="92" height="182" rx="4"/>
+                <rect x="514" y="206" width="106" height="154" rx="4"/>
+              </g>
+              <g fill="#ffd7e6" opacity=".9">
+                <rect x="56" y="216" width="18" height="24" rx="2"/><rect x="88" y="216" width="18" height="24" rx="2"/>
+                <rect x="192" y="184" width="16" height="22" rx="2"/><rect x="222" y="184" width="16" height="22" rx="2"/>
+                <rect x="420" y="198" width="16" height="22" rx="2"/><rect x="450" y="198" width="16" height="22" rx="2"/>
+                <rect x="530" y="226" width="18" height="24" rx="2"/><rect x="562" y="226" width="18" height="24" rx="2"/>
+              </g>
+              <rect y="236" width="640" height="124" fill="url(#tkFog2)" opacity=".55"/>
+              <g>
+                <circle cx="330" cy="256" r="11" fill="#2a1420"/>
+                <path d="M320 268 q10 -6 20 0 l5 26 h-30 z" fill="#2a1420"/>
+                <circle cx="300" cy="300" r="16" fill="none" stroke="#2a1420" stroke-width="4"/>
+                <circle cx="362" cy="300" r="16" fill="none" stroke="#2a1420" stroke-width="4"/>
+                <path d="M300 300 H330 L338 280" fill="none" stroke="#2a1420" stroke-width="4" stroke-linecap="round"/>
+              </g>
+              <rect x="16" y="16" width="112" height="30" rx="15" fill="#2a1420" opacity=".8"/>
+              <text x="72" y="36" font-family="sans-serif" font-size="13" fill="#ffe1ee" text-anchor="middle">EP.01 首映</text>
+            </svg>
+            <div class="tk-play" aria-hidden="true"><span></span></div>
+          </div>
+          <div class="tk-feature-body">
+            <div class="tk-tag-row">
+              <span class="tk-tag">品牌故事</span>
+              <span class="tk-tag is-lilac">城市探索</span>
+              <span class="tk-tag is-gold">官方发布</span>
+            </div>
+            <h3 class="tk-feature-title">《粉雾纪事》第一集：在清晨六点的旧街区，等一场桃红色的雾</h3>
+            <p class="tk-feature-desc">桃红色界吧冬季企划的开篇之作。导演用 4 分钟记录旧街区在粉雾中醒来的过程，从早点摊的蒸汽到骑行者压过水洼的倒影，把城市最柔软的一面留在高清镜头里。</p>
+            <div class="tk-meta-row">
+              <span class="tk-avatar-xs" style="background:#b01f5f">雾</span>
+              <span>创作者 · 雾岛七</span>
+              <span>· 12.6 万次播放</span>
+              <span>· 3 天前</span>
+            </div>
+            <div class="tk-actions">
+              <button class="tk-mini-btn tk-like-btn" type="button" aria-pressed="false"><span aria-hidden="true">♡</span> <span class="tk-like-num">2,341</span></button>
+              <button class="tk-mini-btn tk-save-btn" type="button" aria-pressed="false"><span aria-hidden="true">☆</span> 收藏</button>
+              <button class="tk-mini-btn tk-comment-btn" type="button" data-title="《粉雾纪事》第一集">评论</button>
+              <button class="tk-mini-btn tk-share-btn" type="button" data-title="《粉雾纪事》第一集">分享</button>
+            </div>
+          </div>
+        </article>
+
+        <div class="tk-list-side" aria-label="焦点内容文字推荐">
+          <article class="tk-list-item">
+            <span class="tk-rank">02</span>
+            <div>
+              <h3 class="tk-list-title">桃红与旧胶片：一次关于色彩的深度测评</h3>
+              <p class="tk-list-sub"><span>经验分享</span><span>9.8 万播放</span><span>禾一摄影</span></p>
+            </div>
+          </article>
+          <article class="tk-list-item">
+            <span class="tk-rank">03</span>
+            <div>
+              <h3 class="tk-list-title">她把祖母的缝纫机搬进工作室，做了一场桃红手作实验</h3>
+              <p class="tk-list-sub"><span>手作DIY</span><span>7.4 万播放</span><span>布语者阿澜</span></p>
+            </div>
+          </article>
+          <article class="tk-list-item">
+            <span class="tk-rank">04</span>
+            <div>
+              <h3 class="tk-list-title">内容创作者如何用一支手机拍出品牌级桃红色调</h3>
+              <p class="tk-list-sub"><span>教程干货</span><span>6.1 万播放</span><span>桃色实验室</span></p>
+            </div>
+          </article>
+          <article class="tk-list-item">
+            <span class="tk-rank">05</span>
+            <div>
+              <h3 class="tk-list-title">在地文化观察：一座城市的粉色招牌如何被重新理解</h3>
+              <p class="tk-list-sub"><span>行业观察</span><span>4.9 万播放</span><span>街角档案</span></p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 视频精选（三列卡片）===== -->
+  <section class="tk-section" id="tk-videos" aria-labelledby="tkVideosTitle" style="background:linear-gradient(180deg,#fff4f8,#fffdfe)">
+    <div class="tk-container">
+      <div class="tk-section-head">
+        <div>
+          <span class="tk-eyebrow">Videos 精选</span>
+          <h2 class="tk-h2" id="tkVideosTitle">桃红色界吧 · 本节必看视频</h2>
+          <p class="tk-section-desc">覆盖教程、测评、访谈与日常记录，每一支都经过内容团队审片，正版高清、值得信赖。</p>
+        </div>
+        <a class="tk-link-more" href="#tk-topic">进入专题页 →</a>
+      </div>
+
+      <div class="tk-video-grid">
+        <article class="tk-video-card">
+          <div class="tk-video-card-cover">
+            <svg viewBox="0 0 400 225" role="img" aria-label="视频封面：桃红渐变的化妆镜前，一只手正在调试补光灯">
+              <defs>
+                <linearGradient id="tkV1" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#ffd7e6"/><stop offset="1" stop-color="#e8468b"/>
+                </linearGradient>
+              </defs>
+              <rect width="400" height="225" fill="url(#tkV1)"/>
+              <circle cx="200" cy="104" r="58" fill="#fff5f9" opacity=".9"/>
+              <circle cx="200" cy="104" r="42" fill="none" stroke="#b01f5f" stroke-width="3" opacity=".6"/>
+              <rect x="126" y="168" width="148" height="12" rx="6" fill="#7a2a52" opacity=".7"/>
+              <path d="M200 46 v-16 M200 174 v-16 M142 104 h-16 M274 104 h-16" stroke="#b01f5f" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+              <circle cx="200" cy="104" r="14" fill="#b01f5f" opacity=".8"/>
+            </svg>
+          </div>
+          <div class="tk-video-card-body">
+            <div class="tk-tag-row"><span class="tk-tag">教程干货</span><span class="tk-tag is-lilac">实用技巧</span></div>
+            <h3>三步调出属于你的桃红肤色：补光、色温与白平衡</h3>
+            <p>从室内补光位置到相机白平衡偏移，完整拆解桃红色调的人像拍法，附参数对照表。</p>
+            <div class="tk-meta-row">
+              <span class="tk-avatar-xs" style="background:#7b3fb5">桃</span>
+              <span>桃色实验室</span><span>· 5.2 万播放</span>
+            </div>
+            <div class="tk-actions">
+              <button class="tk-mini-btn tk-like-btn" type="button" aria-pressed="false"><span aria-hidden="true">♡</span> <span class="tk-like-num">860</span></button>
+              <button class="tk-mini-btn tk-save-btn" type="button" aria-pressed="false"><span aria-hidden="true">☆</span> 收藏</button>
+              <button class="tk-mini-btn tk-comment-btn" type="button" data-title="三步调出属于你的桃红肤色">评论</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="tk-video-card">
+          <div class="tk-video-card-cover">
+            <svg viewBox="0 0 400 225" role="img" aria-label="视频封面：手作工作台上摆放缝纫机、桃红色布片与线轴">
+              <rect width="400" height="225" fill="#fff0f6"/>
+              <rect x="0" y="150" width="400" height="75" fill="#f7c6da"/>
+              <rect x="52" y="86" width="120" height="66" rx="8" fill="#b01f5f"/>
+              <rect x="64" y="98" width="96" height="42" rx="4" fill="#ffe1ee"/>
+              <circle cx="88" cy="118" r="10" fill="#e8468b"/>
+              <path d="M196 150 l34 -44 l30 44 z" fill="#f2609b"/>
+              <rect x="248" y="112" width="60" height="38" rx="6" fill="#7b3fb5"/>
+              <circle cx="278" cy="131" r="9" fill="#ffe1ee"/>
+              <path d="M330 96 q30 24 0 54" stroke="#b01f5f" stroke-width="4" fill="none"/>
+              <circle cx="330" cy="96" r="6" fill="#b01f5f"/>
+            </svg>
+          </div>
+          <div class="tk-video-card-body">
+            <div class="tk-tag-row"><span class="tk-tag">手作DIY</span><span class="tk-tag is-gold">创作幕后</span></div>
+            <h3>祖母的老缝纫机与桃红碎布，缝成一件可以穿的记忆</h3>
+            <p>创作者记录从选布、裁片到成衣的全过程，聊聊旧物改造如何保存家庭记忆。</p>
+            <div class="tk-meta-row">
+              <span class="tk-avatar-xs" style="background:#a86f00">布</span>
+              <span>布语者阿澜</span><span>· 3.8 万播放</span>
+            </div>
+            <div class="tk-actions">
+              <button class="tk-mini-btn tk-like-btn" type="button" aria-pressed="false"><span aria-hidden="true">♡</span> <span class="tk-like-num">1,204</span></button>
+              <button class="tk-mini-btn tk-save-btn" type="button" aria-pressed="false"><span aria-hidden="true">☆</span> 收藏</button>
+              <button class="tk-mini-btn tk-comment-btn" type="button" data-title="祖母的老缝纫机与桃红碎布">评论</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="tk-video-card">
+          <div class="tk-video-card-cover">
+            <svg viewBox="0 0 400 225" role="img" aria-label="视频封面：雨夜街头霓虹招牌倒映在积水里，呈现桃红与紫色">
+              <rect width="400" height="225" fill="#2a1420"/>
+              <g opacity=".55">
+                <rect x="30" y="30" width="52" height="120" rx="4" fill="#5d1f3f"/>
+                <rect x="96" y="52" width="40" height="98" rx="4" fill="#7a2a52"/>
+                <rect x="290" y="40" width="58" height="110" rx="4" fill="#5d1f3f"/>
+              </g>
+              <rect x="160" y="34" width="80" height="52" rx="8" fill="#e8468b"/>
+              <text x="200" y="68" font-family="sans-serif" font-size="20" fill="#fff5f9" text-anchor="middle" font-weight="bold">界吧</text>
+              <path d="M150 150 h100" stroke="#ffe1ee" stroke-width="2"/>
+              <rect y="170" width="400" height="55" fill="#3a1c2b"/>
+              <g opacity=".8">
+                <rect x="160" y="176" width="80" height="42" fill="#e8468b" opacity=".4"/>
+                <rect x="172" y="184" width="8" height="26" fill="#ffd7e6" opacity=".7"/>
+                <rect x="196" y="184" width="8" height="26" fill="#ffd7e6" opacity=".7"/>
+                <rect x="220" y="184" width="8" height="26" fill="#ffd7e6" opacity=".7"/>
+              </g>
+            </svg>
+          </div>
+          <div class="tk-video-card-body">
+            <div class="tk-tag-row"><span class="tk-tag">城市探索</span><span class="tk-tag is-lilac">在地文化</span></div>
+            <h3>夜行记录：沿着粉色霓虹走完这条老街的三公里</h3>
+            <p>无解说、无配乐，只有雨声与脚步。用 12 分钟长镜头保存一条街的夜间表情。</p>
+            <div class="tk-meta-row">
+              <span class="tk-avatar-xs" style="background:#127a4b">街</span>
+              <span>街角档案</span><span>· 6.7 万播放</span>
+            </div>
+            <div class="tk-actions">
+              <button class="tk-mini-btn tk-like-btn" type="button" aria-pressed="false"><span aria-hidden="true">♡</span> <span class="tk-like-num">2,015</span></button>
+              <button class="tk-mini-btn tk-save-btn" type="button" aria-pressed="false"><span aria-hidden="true">☆</span> 收藏</button>
+              <button class="tk-mini-btn tk-comment-btn" type="button" data-title="夜行记录：沿着粉色霓虹走完这条老街的三公里">评论</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="tk-video-card">
+          <div class="tk-video-card-cover">
+            <svg viewBox="0 0 400 225" role="img" aria-label="视频封面：两位创作者坐在访谈椅上，背景是桃红色圆形灯牌">
+              <rect width="400" height="225" fill="#fff7fa"/>
+              <circle cx="200" cy="86" r="62" fill="#ffd7e6"/>
+              <circle cx="200" cy="86" r="44" fill="none" stroke="#e8468b" stroke-width="3" stroke-dasharray="8 7"/>
+              <g>
+                <circle cx="140" cy="150" r="22" fill="#b01f5f"/>
+                <rect x="116" y="172" width="48" height="53" rx="14" fill="#b01f5f"/>
+                <circle cx="258" cy="150" r="22" fill="#7b3fb5"/>
+                <rect x="234" y="172" width="48" height="53" rx="14" fill="#7b3fb5"/>
+              </g>
+              <rect x="176" y="186" width="48" height="10" rx="5" fill="#f7a8c8"/>
+            </svg>
+          </div>
+          <div class="tk-video-card-body">
+            <div class="tk-tag-row"><span class="tk-tag">人物访谈</span><span class="tk-tag is-gold">品牌故事</span></div>
+            <h3>对谈：两位女性导演聊「桃红色」是不是一种偏见</h3>
+            <p>从被贴标签到主动使用标签，她们分享各自作品里色彩与身份的复杂关系。</p>
+            <div class="tk-meta-row">
+              <span class="tk-avatar-xs" style="background:#e8468b">访</span>
+              <span>桃红色界吧编辑部</span><span>· 4.1 万播放</span>
+            </div>
+            <div class="tk-actions">
+              <button class="tk-mini-btn tk-like-btn" type="button" aria-pressed="false"><span aria-hidden="true">♡</span> <span class="tk-like-num">1,678</span></button>
+              <button class="tk-mini-btn tk-save-btn" type="button" aria-pressed="false"><span aria-hidden="true">☆</span> 收藏</button>
+              <button class="tk-mini-btn tk-comment-btn" type="button" data-title="对谈：两位女性导演聊桃红色">评论</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="tk-video-card">
+          <div class="tk-video-card-cover">
+            <svg viewBox="0 0 400 225" role="img" aria-label="视频封面：厨房台面上的桃红奶昔与新鲜莓果">
+              <rect width="400" height="225" fill="#ffeef5"/>
+              <rect y="160" width="400" height="65" fill="#f7c6da"/>
+              <path d="M150 60 h100 l-14 96 h-72 z" fill="#fff5f9"/>
+              <path d="M160 96 h80 l-8 56 h-64 z" fill="#e8468b"/>
+              <circle cx="178" cy="86" r="13" fill="#b01f5f"/>
+              <circle cx="214" cy="76" r="10" fill="#f2609b"/>
+              <path d="M250 58 l22 -18" stroke="#127a4b" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="128" cy="150" r="16" fill="#b01f5f"/>
+              <circle cx="290" cy="152" r="13" fill="#f2609b"/>
+            </svg>
+          </div>
+          <div class="tk-video-card-body">
+            <div class="tk-tag-row"><span class="tk-tag">美食烹饪</span><span class="tk-tag is-lilac">日常记录</span></div>
+            <h3>桃红奶昔的三种做法：从早餐到深夜的甜度曲线</h3>
+            <p>用当季莓果和酸奶调出不同层次的粉色，顺带聊聊食物色彩对心情的影响。</p>
+            <div class="tk-meta-row">
+              <span class="tk-avatar-xs" style="background:#a86f00">甜</span>
+              <span>甜度可控</span><span>· 2.9 万播放</span>
+            </div>
+            <div class="tk-actions">
+              <button class="tk-mini-btn tk-like-btn" type="button" aria-pressed="false"><span aria-hidden="true">♡</span> <span class="tk-like-num">934</span></button>
+              <button class="tk-mini-btn tk-save-btn" type="button" aria-pressed="false"><span aria-hidden="true">☆</span> 收藏</button>
+              <button class="tk-mini-btn tk-comment-btn" type="button" data-title="桃红奶昔的三种做法">评论</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="tk-video-card">
+          <div class="tk-video-card-cover">
+            <svg viewBox="0 0 400 225" role="img" aria-label="视频封面：户外草地上支起的桃红色露营天幕与远山">
+              <rect width="400" height="225" fill="#f3e6ff"/>
+              <path d="M0 150 q100 -60 200 -22 q100 38 200 4 V225 H0 Z" fill="#ffd7e6"/>
+              <path d="M0 176 q110 -34 210 6 q90 34 190 -2 V225 H0 Z" fill="#e8468b" opacity=".7"/>
+              <path d="M120 150 l70 -58 l70 58 z" fill="#b01f5f"/>
+              <path d="M190 92 v58" stroke="#ffe1ee" stroke-width="3"/>
+              <circle cx="70" cy="60" r="22" fill="#fff5f9" opacity=".9"/>
+              <path d="M240 120 q30 -14 56 0" stroke="#7b3fb5" stroke-width="3" fill="none"/>
+            </svg>
+          </div>
+          <div class="tk-video-card-body">
+            <div class="tk-tag-row"><span class="tk-tag">户外活动</span><span class="tk-tag is-gold">治愈影像</span></div>
+            <h3>带一块桃红天幕去露营：两天一夜的留白练习</h3>
+            <p>不赶行程的露营记录。煮咖啡、看云、把手机调成飞行模式，找回慢下来的节奏。</p>
+            <div class="tk-meta-row">
+              <span class="tk-avatar-xs" style="background:#7b3fb5">野</span>
+              <span>野行手帖</span><span>· 3.3 万播放</span>
+            </div>
+            <div class="tk-actions">
+              <button class="tk-mini-btn tk-like-btn" type="button" aria-pressed="false"><span aria-hidden="true">♡</span> <span class="tk-like-num">1,102</span></button>
+              <button class="tk-mini-btn tk-save-btn" type="button" aria-pressed="false"><span aria-hidden="true">☆</span> 收藏</button>
+              <button class="tk-mini-btn tk-comment-btn" type="button" data-title="带一块桃红天幕去露营">评论</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 关键词解析长文 ===== -->
+  <section class="tk-section" id="tk-about" aria-labelledby="tkAboutTitle">
+    <div class="tk-container">
+      <div class="tk-section-head">
+        <div>
+          <span class="tk-eyebrow">About 品牌解析</span>
+          <h2 class="tk-h2" id="tkAboutTitle">读懂 <em>桃红色界吧</em>：一个颜色如何长成一个内容生态</h2>
+          <p class="tk-section-desc">企业背景、内容方法与社区价值观，这一节讲清楚桃红色界吧为什么值得信赖。</p>
+        </div>
+      </div>
+
+      <div class="tk-essay">
+        <h3>一、从颜色出发：桃红色界吧的品牌起点与定位</h3>
+        <p>桃红色界吧成立于一个很具体的困惑：为什么关于「桃红」的影像，要么被简化成滤镜，要么被简化成标签？团队的答案是把颜色当作一种观察方法，而不是装饰。作为一家持续运营的影像内容企业，桃红色界吧官方网站把品牌定位写得很直白——做桃红美学领域垂直的内容社区，让创作者用真实的镜头讨论色彩、身份、城市与日常。我们不追求把所有画面都染成粉色，而是承认粉色本身有层次：清晨的雾粉、傍晚的玫红、旧墙皮褪下去的灰粉、霓虹灯映在积水里的荧光粉。这些层次构成了桃红色界吧的视觉语言，也构成了我们筛选作品的标准。</p>
+        <p>官网首页上的每一支影片，都来自我们与创作者共同完成的内容流程：投稿初审、色调节奏评估、成片复审、上线后数据回看。这个过程听起来琐碎，却决定了社区的品质底线。桃红色界吧相信，<strong>正版与高清</strong>不是宣传语，而是对观看者的基本尊重；<strong>原创与真实</strong>不是口号，而是创作者愿意留下来的理由。我们把「用户首选」理解为一种长期结果：当你需要找一支关于桃红的影像，第一反应是打开桃红色界吧，那才算数。</p>
+
+        <h3>二、桃红色界吧的内容方法论：垂直、分层、可复用</h3>
+        <p>在内容组织上，桃红色界吧采用「垂直 + 分层」的方法。垂直，是只做与色彩、影像、生活记录强相关的题材，不做泛泛的流量拼盘；分层，是把内容拆成教程干货、深度测评、人物访谈、城市探索、手作与日常记录等不同用途的栏目，让不同需求的用户都能快速找到入口。比如同样谈补光，教程类影片会给参数、给机位、给失败案例；访谈类影片则更关心创作者为什么这样选择。两种内容在桃红色界吧里并存，互相补充，而不是互相替代。</p>
+        <p>可复用，是很多用户注意不到的细节。桃红色界吧的每一支教程都会附带一份可下载的拍摄清单，每一场专题企划都会沉淀成可检索的索引页。创作者上传之后，内容不会随着时间线消失，而是被重新归类、重新推荐。这也是我们坚持「持续运营」的原因：内容生态不是一次性发布，而是不断整理、校对和再发现。对品牌合作方来说，这意味着更长的内容生命周期；对普通观众来说，这意味着每次回来都能找到新的东西。</p>
+
+        <div class="tk-essay-quote">「桃红色界吧不想把桃红做成一种审美唯一答案。我们更愿意把它当成一个提问的方式：你看到这一抹红，会想起什么？」—— 桃红色界吧内容团队</div>
+
+        <h3>三、社区与创作者：桃红色界吧如何陪伴每一次成长</h3>
+        <p>桃红色界吧的创作者矩阵并不追求头部集中，而是刻意保持多元。我们签约与合作的创作者里，有专注城市夜景的独立导演，有从手作转做生活方式记录的设计师，也有用手机拍片的素人作者。他们共同的特点是愿意在片子里留下真实的生活痕迹：失败的那一次调色、没赶上的那班车、缝歪的线。桃红色界吧把这类内容称为「陪伴型影像」，它们未必最热闹，却最能让人留下来。</p>
+        <p>为了让成长可见，官网设有创作者名录、更新日志与月度口碑榜。新作者可以通过投稿入口提交作品，通过审核后进入新人推荐位；成熟作者可以申请专题企划，由平台提供策划、资源与分发支持。我们也在做一件慢但重要的事：把社区讨论中反复出现的问题整理成 FAQ 与创作灵感库，让经验可以被复用。桃红色界吧相信，真正的内容生态不是把大家聚在一起就够了，而是让每个人都能在这里获得一点具体的能力。</p>
+
+        <h3>四、品质、责任与长期主义</h3>
+        <p>作为品牌方，桃红色界吧对「品质」有具体的定义：画质达到高清标准、声音清楚、信息准确、版权清晰。我们会对涉及他人的影像取得授权，会对品牌合作内容做明确标注，也会在专题企划中保留不同意见的位置。这些做法不制造话题，却决定了社区能不能长期被信任。桃红色界吧的企业动态里，最多的不是营销战绩，而是审片标准更新、版权规范修订和创作者扶持计划。</p>
+        <p>我们也清楚自己的局限：桃红只是一个切口，真正值得记录的是人。所以桃红色界吧在内容方向上保持开放，愿意讨论美妆、家居、旅行、职场与亲子等不同生活场景里的色彩经验。只要创作者愿意认真对待画面和叙述，桃红色界吧就愿意提供位置。这既是对多元与包容的实践，也是我们对「值得信赖」这四个字的理解——不是永远正确，而是始终诚实，始终愿意改进，始终和创作者站在一起。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 专题 / 企划 ===== -->
+  <section class="tk-section" id="tk-topic" aria-labelledby="tkTopicTitle">
+    <div class="tk-container">
+      <div class="tk-section-head">
+        <div>
+          <span class="tk-eyebrow">Specials 专题</span>
+          <h2 class="tk-h2" id="tkTopicTitle">桃红色界吧 · 正在进行的专题企划</h2>
+          <p class="tk-section-desc">围绕同一个母题，邀请不同创作者交出各自的答案。每个专题持续更新，欢迎报名参与。</p>
+        </div>
+      </div>
+
+      <div class="tk-topic-grid">
+        <article class="tk-topic-card">
+          <div class="tk-topic-head">
+            <h3>冬季企划《粉雾纪事》</h3>
+            <span class="tk-status on">更新中</span>
+          </div>
+          <p>记录冬天里所有偏桃红的瞬间：清晨的雾、室内的暖光、围巾与热饮。12 位创作者已交片，第二批征集开放至本月底。</p>
+          <div class="tk-topic-cover">
+            <svg viewBox="0 0 640 280" role="img" aria-label="专题《粉雾纪事》视觉：粉雾弥漫的树林与远处步行的人影">
+              <defs>
+                <linearGradient id="tkT1" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#fff5f9"/><stop offset=".6" stop-color="#f7a8c8"/><stop offset="1" stop-color="#b01f5f"/>
+                </linearGradient>
+              </defs>
+              <rect width="640" height="280" fill="url(#tkT1)"/>
+              <g fill="#fff" opacity=".55">
+                <ellipse cx="120" cy="96" rx="90" ry="26"/><ellipse cx="300" cy="60" rx="120" ry="22"/><ellipse cx="520" cy="110" rx="100" ry="20"/>
+              </g>
+              <g fill="#7a2a52" opacity=".72">
+                <path d="M110 220 l18 -90 l18 90 z"/><path d="M164 226 l14 -74 l14 74 z"/>
+                <path d="M470 224 l16 -84 l16 84 z"/><path d="M520 230 l13 -68 l13 68 z"/>
+              </g>
+              <path d="M0 232 q160 -22 320 -4 q160 18 320 -8 V280 H0 Z" fill="#5d1f3f" opacity=".85"/>
+              <g fill="#2a1420">
+                <circle cx="322" cy="186" r="8"/><rect x="315" y="194" width="14" height="30" rx="5"/>
+              </g>
+              <rect x="30" y="30" width="126" height="26" rx="13" fill="#b01f5f" opacity=".85"/>
+              <text x="93" y="48" font-family="sans-serif" font-size="13" fill="#fff5f9" text-anchor="middle">EP.01 - EP.12</text>
+            </svg>
+          </div>
+          <ul class="tk-topic-list">
+            <li>《粉雾纪事》第一集：在清晨六点的旧街区，等一场桃红色的雾</li>
+            <li>《粉雾纪事》第三集：煮一壶热红酒，把窗外的灰调压下去</li>
+            <li>《粉雾纪事》第七集：冬季室内人像补光的三个笨办法</li>
+          </ul>
+        </article>
+
+        <article class="tk-topic-card">
+          <div class="tk-topic-head">
+            <h3>长期企划《街角粉红档案》</h3>
+            <span class="tk-status on">持续征集中</span>
+          </div>
+          <p>拍摄城市里所有偏粉的招牌、墙面与灯箱，记录它们的时间、位置和背后的小生意。这是一个需要很多人一起完成的城市档案。</p>
+          <ul class="tk-topic-list">
+            <li>档案 017：开了二十三年的花店，招牌是手刷的玫红</li>
+            <li>档案 023：理发店门口旋转的粉白灯柱</li>
+            <li>档案 031：菜市场里最亮的粉色塑料棚</li>
+          </ul>
+          <p style="font-size:.8rem;color:var(--tk-pink-deep);font-weight:700">已收录 128 个街角 · 本月新增 9 个</p>
+        </article>
+
+        <article class="tk-topic-card">
+          <div class="tk-topic-head">
+            <h3>新人扶持《第一次拍桃红》</h3>
+            <span class="tk-status wait">招募中</span>
+          </div>
+          <p>面向第一次拍摄色彩主题的创作者：提供一份 6 页拍摄指南、一次线上点评和首页新人推荐位。不设粉丝门槛，只看作品完成度。</p>
+          <ul class="tk-topic-list">
+            <li>指南：如何在一个场景里找到三种不同层次的粉</li>
+            <li>点评：每月 15 日，编辑团队直播看片</li>
+            <li>推荐：入选作品进入新人榜与首页专题位</li>
+          </ul>
+        </article>
+
+        <article class="tk-topic-card">
+          <div class="tk-topic-head">
+            <h3>品牌合作《桃红生活实验室》</h3>
+            <span class="tk-status on">第二季上线</span>
+          </div>
+          <p>与生活方式品牌共创的系列短片，讨论颜色如何进入家居、穿搭与餐桌。每支影片都标注合作信息，内容判断权在编辑团队。</p>
+          <ul class="tk-topic-list">
+            <li>第二季 EP.02：把一面墙刷成雾粉之后，房间发生了什么</li>
+            <li>第二季 EP.04：桃红色餐具对一顿早餐的影响</li>
+            <li>第二季 EP.06：通勤包里的三种红，如何搭配不打架</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 创作者矩阵 ===== -->
+  <section class="tk-section" id="tk-authors" aria-labelledby="tkAuthorsTitle" style="background:linear-gradient(180deg,#fffdfe,#fdf1f6)">
+    <div class="tk-container">
+      <div class="tk-section-head">
+        <div>
+          <span class="tk-eyebrow">Creators 创作者</span>
+          <h2 class="tk-h2" id="tkAuthorsTitle">桃红色界吧的创作者们</h2>
+          <p class="tk-section-desc">他们用不同的方法处理同一种颜色。点击卡片可以查看更完整的作者档案。</p>
+        </div>
+      </div>
+
+      <div class="tk-author-grid">
+        <article class="tk-author-card tk-author-trigger" data-author="雾岛七" data-field="城市探索 · 影像叙事" tabindex="0" role="button" aria-label="查看创作者雾岛七的档案">
+          <span class="tk-avatar-lg" style="background:linear-gradient(135deg,#e8468b,#b01f5f)">雾</span>
+          <div>
+            <div class="tk-author-name">雾岛七 <span class="tk-author-field">城市探索</span></div>
+            <div class="tk-author-bio">独立导演，习惯在清晨或雨天出门拍片，作品以长镜头和环境声为主。她认为城市最动人的部分往往藏在没有主角的画面里，坚持用真实光线完成每一次拍摄。</div>
+            <div class="tk-author-nums"><span>作品 <b>68</b></span><span>粉丝 <b>24.3 万</b></span></div>
+          </div>
+        </article>
+
+        <article class="tk-author-card tk-author-trigger" data-author="桃色实验室" data-field="教程干货 · 色彩调校" tabindex="0" role="button" aria-label="查看创作者桃色实验室的档案">
+          <span class="tk-avatar-lg" style="background:linear-gradient(135deg,#7b3fb5,#b01f5f)">桃</span>
+          <div>
+            <div class="tk-author-name">桃色实验室 <span class="tk-author-field">教程干货</span></div>
+            <div class="tk-author-bio">由三位摄影师组成的技术向账号，专注色彩与光线教学。每条教程都附参数表和失败案例，主张先理解原理再谈风格，在社区里以「讲得细」著称。</div>
+            <div class="tk-author-nums"><span>作品 <b>112</b></span><span>粉丝 <b>31.6 万</b></span></div>
+          </div>
+        </article>
+
+        <article class="tk-author-card tk-author-trigger" data-author="布语者阿澜" data-field="手作DIY · 旧物改造" tabindex="0" role="button" aria-label="查看创作者布语者阿澜的档案">
+          <span class="tk-avatar-lg" style="background:linear-gradient(135deg,#f5b942,#b01f5f)">布</span>
+          <div>
+            <div class="tk-author-name">布语者阿澜 <span class="tk-author-field">手作DIY</span></div>
+            <div class="tk-author-bio">服装设计师，擅长把旧布料和家庭旧物改造成新衣。她的影像节奏很慢，几乎保留了所有缝纫机的声音，希望观众能听见制作过程里的耐心。</div>
+            <div class="tk-author-nums"><span>作品 <b>46</b></span><span>粉丝 <b>12.8 万</b></span></div>
+          </div>
+        </article>
+
+        <article class="tk-author-card tk-author-trigger" data-author="街角档案" data-field="在地文化 · 行业观察" tabindex="0" role="button" aria-label="查看创作者街角档案的档案">
+          <span class="tk-avatar-lg" style="background:linear-gradient(135deg,#127a4b,#3a1c2b)">街</span>
+          <div>
+            <div class="tk-author-name">街角档案 <span class="tk-author-field">在地文化</span></div>
+            <div class="tk-author-bio">由两位城市研究者运营，长期记录街边小店的招牌、灯箱与手写价目。他们相信商业空间的细节是理解一座城市最直接的入口，内容以图文与短片并行。</div>
+            <div class="tk-author-nums"><span>作品 <b>89</b></span><span>粉丝 <b>18.5 万</b></span></div>
+          </div>
+        </article>
+
+        <article class="tk-author-card tk-author-trigger" data-author="甜度可控" data-field="美食烹饪 · 日常记录" tabindex="0" role="button" aria-label="查看创作者甜度可控的档案">
+          <span class="tk-avatar-lg" style="background:linear-gradient(135deg,#f2609b,#f5b942)">甜</span>
+          <div>
+            <div class="tk-author-name">甜度可控 <span class="tk-author-field">美食烹饪</span></div>
+            <div class="tk-author-bio">家庭厨房创作者，拍早餐也拍深夜甜点。她不追求完美摆盘，更愿意记录糖放多了一点、火候差了一点之后的真实结果，评论区常说「像在看朋友做饭」。</div>
+            <div class="tk-author-nums"><span>作品 <b>73</b></span><span>粉丝 <b>9.7 万</b></span></div>
+          </div>
+        </article>
+
+        <article class="tk-author-card tk-author-trigger" data-author="野行手帖" data-field="户外活动 · 治愈影像" tabindex="0" role="button" aria-label="查看创作者野行手帖的档案">
+          <span class="tk-avatar-lg" style="background:linear-gradient(135deg,#3a1c2b,#7b3fb5)">野</span>
+          <div>
+            <div class="tk-author-name">野行手帖 <span class="tk-author-field">户外活动</span></div>
+            <div class="tk-author-bio">露营与徒步爱好者，影像以自然声和留白见长。她坚持不带团队独自拍摄，认为一个人搭好天幕再按下录制的等待，本身就应该被记录在片子里。</div>
+            <div class="tk-author-nums"><span>作品 <b>39</b></span><span>粉丝 <b>15.2 万</b></span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 用户评价 ===== -->
+  <section class="tk-section" id="tk-voices" aria-labelledby="tkVoicesTitle">
+    <div class="tk-container">
+      <div class="tk-section-head">
+        <div>
+          <span class="tk-eyebrow">Voices 口碑</span>
+          <h2 class="tk-h2" id="tkVoicesTitle">观众怎么说 <em>桃红色界吧</em></h2>
+          <p class="tk-section-desc">来自社区的短评摘录，保留原话的语气与长度，不做统一改写。</p>
+        </div>
+        <button class="tk-btn tk-btn-ghost" type="button" id="tkFeedbackBtn">提交反馈</button>
+      </div>
+
+      <div class="tk-comment-grid">
+        <article class="tk-comment">
+          <span class="tk-avatar-sm" style="background:#b01f5f">林</span>
+          <div><div class="tk-comment-name">林小满 <span class="tk-stars">★★★★★</span></div><p>按桃色实验室的教程拍了一次，第一次觉得自己的片子颜色是「有想法」的，不是随手套滤镜。</p><div class="tk-comment-time">11 月 18 日</div></div>
+        </article>
+        <article class="tk-comment">
+          <span class="tk-avatar-sm" style="background:#7b3fb5">周</span>
+          <div><div class="tk-comment-name">周周不吃香菜 <span class="tk-stars">★★★★☆</span></div><p>专题做得比很多平台认真，《粉雾纪事》连着看完了，希望更新快一点，等得有点着急。</p><div class="tk-comment-time">11 月 16 日</div></div>
+        </article>
+        <article class="tk-comment">
+          <span class="tk-avatar-sm" style="background:#f5b942">陈</span>
+          <div><div class="tk-comment-name">陈一一 <span class="tk-stars">★★★★★</span></div><p>个人最喜欢街角档案系列，看别人拍自己楼下的小店，会重新觉得住的地方挺有意思。</p><div class="tk-comment-time">11 月 15 日</div></div>
+        </article>
+        <article class="tk-comment">
+          <span class="tk-avatar-sm" style="background:#127a4b">阿</span>
+          <div><div class="tk-comment-name">阿布丁 <span class="tk-stars">★★★★★</span></div><p>投稿过一次，编辑给了很细的回复，指出我画面里色彩太杂。虽然没入选，但确实学到了东西。</p><div class="tk-comment-time">11 月 12 日</div></div>
+        </article>
+        <article class="tk-comment">
+          <span class="tk-avatar-sm" style="background:#3a1c2b">K</span>
+          <div><div class="tk-comment-name">Kiko_在拍照 <span class="tk-stars">★★★★☆</span></div><p>网页看着很舒服，找教程也方便。提个小建议：希望收藏夹能分类，现在收藏多了有点乱。</p><div class="tk-comment-time">11 月 10 日</div></div>
+        </article>
+        <article class="tk-comment">
+          <span class="tk-avatar-sm" style="background:#e8468b">晚</span>
+          <div><div class="tk-comment-name">晚风与热红酒 <span class="tk-stars">★★★★★</span></div><p>不是那种全是滤镜的社区。看到创作者拍失败的过程，反而更愿意关注她，这种真实很难得。</p><div class="tk-comment-time">11 月 8 日</div></div>
+        </article>
+        <article class="tk-comment">
+          <span class="tk-avatar-sm" style="background:#a86f00">大</span>
+          <div><div class="tk-comment-name">大橘为重 <span class="tk-stars">★★★★☆</span></div><p>在做品牌内容，来这边找参考。合作视频都标了合作信息，这点让人放心，比偷偷植入体面多了。</p><div class="tk-comment-time">11 月 6 日</div></div>
+        </article>
+        <article class="tk-comment">
+          <span class="tk-avatar-sm" style="background:#7a2a52">小</span>
+          <div><div class="tk-comment-name">小满未满 <span class="tk-stars">★★★★★</span></div><p>从手作那期开始关注的，现在每周末都会来看更新，已经变成习惯了。希望多做一些手作。</p><div class="tk-comment-time">11 月 3 日</div></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 企业动态 + 合作品牌 ===== -->
+  <section class="tk-section" id="tk-news" aria-labelledby="tkNewsTitle" style="background:#fff7fa">
+    <div class="tk-container">
+      <div class="tk-section-head">
+        <div>
+          <span class="tk-eyebrow">News 企业动态</span>
+          <h2 class="tk-h2" id="tkNewsTitle">桃红色界吧 · 官方发布与更新日志</h2>
+          <p class="tk-section-desc">审片标准、扶持计划与产品更新，重要变化都会在这里说明。</p>
+        </div>
+      </div>
+
+      <div class="tk-log" style="margin-bottom:44px">
+        <article class="tk-log-item">
+          <span class="tk-log-date">2026<br>11.20</span>
+          <div>
+            <h3>审片标准 2.0 发布：新增声音质量与环境声说明</h3>
+            <p>本次更新细化了对现场收音的要求，并新增环境声使用说明，帮助创作者在投稿前完成自检。</p>
+          </div>
+        </article>
+        <article class="tk-log-item">
+          <span class="tk-log-date">2026<br>11.14</span>
+          <div>
+            <h3>「第一次拍桃红」新人扶持计划开放报名</h3>
+            <p>面向零基础创作者，提供拍摄指南、线上点评与首页新人推荐位，本月报名截止 11 月 30 日。</p>
+          </div>
+        </article>
+        <article class="tk-log-item">
+          <span class="tk-log-date">2026<br>11.05</span>
+          <div>
+            <h3>创作者后台 3.2 上线：支持色卡备注与版本对比</h3>
+            <p>投稿时可标注参考色卡，系统会保留两次修改版本，便于编辑与作者对齐最终画面。</p>
+          </div>
+        </article>
+        <article class="tk-log-item">
+          <span class="tk-log-date">2026<br>10.28</span>
+          <div>
+            <h3>桃红色界吧与三家生活方式品牌达成内容合作</h3>
+            <p>合作内容将统一标注，编辑判断独立于商务，相关规则已更新至品牌合作说明页。</p>
+          </div>
+        </article>
+      </div>
+
+      <h3 class="tk-h2" style="font-size:1.2rem;margin-bottom:16px">合作品牌与伙伴</h3>
+      <div class="tk-partners">
+        <div class="tk-partner">雾光影像<span>影像设备支持</span></div>
+        <div class="tk-partner">日常织物<span>手作企划合作</span></div>
+        <div class="tk-partner">山野补给<span>户外内容合作</span></div>
+        <div class="tk-partner">街角书店<span>城市档案共建</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="tk-section" id="tk-faq" aria-labelledby="tkFaqTitle">
+    <div class="tk-container">
+      <div class="tk-section-head">
+        <div>
+          <span class="tk-eyebrow">FAQ 帮助</span>
+          <h2 class="tk-h2" id="tkFaqTitle">关于桃红色界吧的常见问题</h2>
+          <p class="tk-section-desc">投稿、版权、合作与观看相关的问题，这里先给出答案。</p>
+        </div>
+      </div>
+
+      <div class="tk-faq">
+        <details open>
+          <summary>桃红色界吧是什么性质的平台？</summary>
+          <p>桃红色界吧是以桃红美学与影像记录为核心的视频内容社区，由企业团队持续运营。我们与创作者共同完成内容策划与制作，所有上线作品都经过内容审核，坚持正版、高清与真实表达。</p>
+        </details>
+        <details>
+          <summary>如何向桃红色界吧投稿？需要什么条件？</summary>
+          <p>官网底部与各处置有投稿入口。你需要提交成片链接、作品简介、拍摄说明与版权声明。我们欢迎零基础创作者投稿，不设粉丝门槛，但要求画面与声音清晰、版权清晰、内容与社区主题相关。</p>
+        </details>
+        <details>
+          <summary>投稿后多久会收到回复？</summary>
+          <p>常规审核周期为 5 到 7 个工作日。专题企划与新人扶持计划的回复时间为 10 个工作日左右。如果超时未收到通知，可以通过联系邮箱询问，备注投稿编号即可。</p>
+        </details>
+        <details>
+          <summary>作品版权归谁？平台会二次使用吗？</summary>
+          <p>作品版权归创作者所有。桃红色界吧仅在获得授权的前提下，于官网及官方社交渠道进行展示与推荐。涉及品牌合作或专题再剪辑时，会另行取得书面同意，并在页面中明确标注。</p>
+        </details>
+        <details>
+          <summary>品牌可以如何与桃红色界吧合作？</summary>
+          <p>我们提供专题共创、系列短片、创作者联动与内容分发等合作形式。所有合作内容都会在页面中标注合作信息，编辑团队保留内容判断权。可发送合作需求至官方邮箱，注明品牌与预算区间。</p>
+        </details>
+        <details>
+          <summary>观看影片需要付费吗？</summary>
+          <p>目前官网所有公开影片均可免费观看，部分专题企划的附加拍摄指南需要登录后下载。我们不设付费墙，也不做诱导性消费，未来如有变化会通过公告条与更新日志提前说明。</p>
+        </details>
+        <details>
+          <summary>如何反馈问题或举报不当内容？</summary>
+          <p>你可以通过页面上的反馈按钮提交问题，也可以使用官方邮箱联系。涉及版权或隐私的举报，请附上证明材料，我们会在 3 个工作日内完成初步核查并回复处理结果。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 投稿 CTA ===== -->
+  <section class="tk-section" id="tk-submit" aria-labelledby="tkSubmitTitle">
+    <div class="tk-container">
+      <div class="tk-cta">
+        <div>
+          <h2 id="tkSubmitTitle">把你的桃红影像，交给桃红色界吧</h2>
+          <p>无论是第一次拍摄的新人，还是已经拍了很久的创作者，我们都愿意认真看完你的片子。投稿入口长期开放，专题企划每季度更新。</p>
+        </div>
+        <div class="tk-cta-actions">
+          <button class="tk-btn tk-btn-primary" type="button" id="tkSubmitBtn">我要投稿</button>
+          <a class="tk-btn tk-btn-ghost" href="#tk-faq">先看投稿须知</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="tk-footer">
+  <div class="tk-container">
+    <div class="tk-footer-grid">
+      <div>
+        <div class="tk-footer-brand">
+          <svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true">
+            <rect x="1" y="1" width="38" height="38" rx="12" fill="#b01f5f"/>
+            <circle cx="20" cy="18" r="7" fill="none" stroke="#fff" stroke-width="2"/>
+            <path d="M20 14.6 l5 3 v6 l-5 3 -5 -3 v-6 z" fill="none" stroke="#ffd7e6" stroke-width="1.3"/>
+          </svg>
+          <span><strong>桃红色界吧</strong><br><span>PINKREALM</span></span>
+        </div>
+        <p>桃红色界吧官方网站。以桃红美学为核心的原创影像社区，深耕色彩内容，持续运营，致力于为创作者与观众搭建值得信赖的内容生态。</p>
+      </div>
+      <div>
+        <h3>内容</h3>
+        <ul>
+          <li><a href="#tk-focus">焦点内容</a></li>
+          <li><a href="#tk-videos">视频精选</a></li>
+          <li><a href="#tk-topic">专题企划</a></li>
+          <li><a href="#tk-authors">创作者矩阵</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>关于</h3>
+        <ul>
+          <li><a href="#tk-about">品牌解析</a></li>
+          <li><a href="#tk-news">企业动态</a></li>
+          <li><a href="#tk-voices">用户口碑</a></li>
+          <li><a href="#tk-faq">常见问题</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>参与</h3>
+        <ul>
+          <li><a href="#tk-submit">投稿入口</a></li>
+          <li><a href="#tk-submit">品牌合作</a></li>
+          <li><a href="#tk-faq">版权说明</a></li>
+          <li><a href="#tk-top">回到首页</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tk-footer-bottom">
+      <span>© 2026 桃红色界吧 · 官方网站 | 版权所有 | 持续运营中</span>
+      <div class="tk-footer-badges">
+        <span>正版内容</span>
+        <span>高清播放</span>
+        <span>备案号：沪ICP备2026008888号-1</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="tk-top" id="tkTopBtn" type="button" aria-label="回到页面顶部">↑</button>
+<div class="tk-toast" id="tkToast" role="status" aria-live="polite"></div>
+
+<!-- 评论弹窗 -->
+<div class="tk-modal" id="tkCommentModal" role="dialog" aria-modal="true" aria-labelledby="tkCommentModalTitle">
+  <div class="tk-modal-card">
+    <button class="tk-modal-close" type="button" data-close="tkCommentModal" aria-label="关闭评论弹窗">×</button>
+    <h3 id="tkCommentModalTitle">写下你的评论</h3>
+    <p id="tkCommentTarget">针对该影片，说说你的观感。</p>
+    <label class="tk-field"><span>昵称</span><input type="text" id="tkCommentName" maxlength="16" placeholder="怎么称呼你"></label>
+    <label class="tk-field"><span>评论内容</span><textarea id="tkCommentText" rows="4" maxlength="200" placeholder="最多 200 字，友善表达"></textarea></label>
+    <button class="tk-btn tk-btn-primary" type="button" id="tkCommentSubmit" style="width:100%">发表评论</button>
+  </div>
+</div>
+
+<!-- 分享弹窗 -->
+<div class="tk-modal" id="tkShareModal" role="dialog" aria-modal="true" aria-labelledby="tkShareModalTitle">
+  <div class="tk-modal-card">
+    <button class="tk-modal-close" type="button" data-close="tkShareModal" aria-label="关闭分享弹窗">×</button>
+    <h3 id="tkShareModalTitle">分享这支影片</h3>
+    <p id="tkShareTarget">选择一种方式，把内容分享给朋友。</p>
+    <div class="tk-share-row">
+      <button class="tk-mini-btn" type="button" data-share="微信">微信</button>
+      <button class="tk-mini-btn" type="button" data-share="微博">微博</button>
+      <button class="tk-mini-btn" type="button" data-share="QQ">QQ</button>
+      <button class="tk-mini-btn" type="button" data-share="复制链接">复制链接</button>
+    </div>
+  </div>
+</div>
+
+<!-- 作者档案弹窗 -->
+<div class="tk-modal" id="tkAuthorModal" role="dialog" aria-modal="true" aria-labelledby="tkAuthorModalTitle">
+  <div class="tk-modal-card">
+    <button class="tk-modal-close" type="button" data-close="tkAuthorModal" aria-label="关闭作者档案">×</button>
+    <h3 id="tkAuthorModalTitle">创作者档案</h3>
+    <p id="tkAuthorModalBody"></p>
+  </div>
+</div>
+
+<!-- 投稿弹窗 -->
+<div class="tk-modal" id="tkSubmitModal" role="dialog" aria-modal="true" aria-labelledby="tkSubmitModalTitle">
+  <div class="tk-modal-card">
+    <button class="tk-modal-close" type="button" data-close="tkSubmitModal" aria-label="关闭投稿弹窗">×</button>
+    <h3 id="tkSubmitModalTitle">投稿给桃红色界吧</h3>
+    <p>填写基本信息，编辑团队将在 5 到 7 个工作日内回复。</p>
+    <label class="tk-field"><span>作品名称</span><input type="text" id="tkSubName" maxlength="40" placeholder="你的影片名"></label>
+    <label class="tk-field"><span>联系方式</span><input type="text" id="tkSubContact" maxlength="40" placeholder="邮箱或社交账号"></label>
+    <label class="tk-field"><span>作品简介</span><textarea id="tkSubDesc" rows="3" maxlength="160" placeholder="创作背景、拍摄方式、想表达什么"></textarea></label>
+    <button class="tk-btn tk-btn-primary" type="button" id="tkSubSend" style="width:100%">提交投稿</button>
+  </div>
+</div>
+
+<!-- 反馈弹窗 -->
+<div class="tk-modal" id="tkFeedbackModal" role="dialog" aria-modal="true" aria-labelledby="tkFeedbackModalTitle">
+  <div class="tk-modal-card">
+    <button class="tk-modal-close" type="button" data-close="tkFeedbackModal" aria-label="关闭反馈弹窗">×</button>
+    <h3 id="tkFeedbackModalTitle">反馈与举报</h3>
+    <p>请描述你遇到的问题，我们会尽快核查处理。</p>
+    <label class="tk-field"><span>反馈类型</span><input type="text" id="tkFbType" maxlength="20" placeholder="内容问题 / 版权 / 体验建议"></label>
+    <label class="tk-field"><span>详细说明</span><textarea id="tkFbText" rows="4" maxlength="200" placeholder="尽量写清页面位置或影片名称"></textarea></label>
+    <button class="tk-btn tk-btn-primary" type="button" id="tkFbSend" style="width:100%">提交反馈</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ===== Toast ===== */
+  var toast = document.getElementById('tkToast');
+  var toastTimer = null;
+  function showToast(msg){
+    if(!toast) return;
+    toast.textContent = msg;
+    toast.classList.add('is-on');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove('is-on'); }, 2400);
+  }
+
+  /* ===== 移动端导航 ===== */
+  var burger = document.getElementById('tkBurger');
+  var mobileMenu = document.getElementById('tkMobileMenu');
+  if(burger && mobileMenu){
+    burger.addEventListener('click', function(){
+      var open = mobileMenu.classList.toggle('is-open');
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      burger.setAttribute('aria-label', open ? '收起导航菜单' : '展开导航菜单');
+    });
+    mobileMenu.addEventListener('click', function(e){
+      if(e.target.tagName === 'A'){
+        mobileMenu.classList.remove('is-open');
+        burger.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+
+  /* ===== 搜索反馈 ===== */
+  var searchInput = document.getElementById('tkSearchInput');
+  var searchBtn = document.getElementById('tkSearchBtn');
+  var searchNote = document.getElementById('tkSearchNote');
+  function doSearch(){
+    if(!searchInput || !searchNote) return;
+    var kw = searchInput.value.trim();
+    if(!kw){
+      searchNote.textContent = '请输入影片、创作者或专题关键词，例如「补光」「街角档案」「手作」。';
+      searchNote.classList.add('is-on');
+      return;
+    }
+    searchNote.textContent = '正在桃红色界吧内容库中检索「' + kw + '」，已匹配到教程、访谈与专题条目，可继续浏览下方精选内容。';
+    searchNote.classList.add('is-on');
+    showToast('已根据「' + kw + '」更新检索提示');
+  }
+  if(searchBtn){ searchBtn.addEventListener('click', doSearch); }
+  if(searchInput){
+    searchInput.addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){ e.preventDefault(); doSearch(); }
+    });
+    searchInput.addEventListener('input', function(){
+      if(!searchInput.value.trim() && searchNote){ searchNote.classList.remove('is-on'); }
+    });
+  }
+
+  /* ===== 点赞 +1 / 收藏切换 ===== */
+  document.addEventListener('click', function(e){
+    var likeBtn = e.target.closest('.tk-like-btn');
+    if(likeBtn){
+      var numEl = likeBtn.querySelector('.tk-like-num');
+      var liked = likeBtn.classList.toggle('is-liked');
+      likeBtn.setAttribute('aria-pressed', liked ? 'true' : 'false');
+      if(numEl){
+        var raw = numEl.textContent.replace(/,/g,'');
+        var n = parseInt(raw, 10) || 0;
+        n = liked ? n + 1 : Math.max(0, n - 1);
+        numEl.textContent = n.toLocaleString('en-US');
+      }
+      showToast(liked ? '已点赞，感谢你的支持' : '已取消点赞');
+      return;
+    }
+    var saveBtn = e.target.closest('.tk-save-btn');
+    if(saveBtn){
+      var saved = saveBtn.classList.toggle('is-saved');
+      saveBtn.setAttribute('aria-pressed', saved ? 'true' : 'false');
+      var icon = saveBtn.querySelector('span');
+      if(icon){ icon.textContent = saved ? '★' : '☆'; }
+      showToast(saved ? '已加入收藏夹' : '已从收藏夹移除');
+      return;
+    }
+  });
+
+  /* ===== 弹窗通用 ===== */
+  var lastFocus = null;
+  function openModal(id){
+    var el = document.getElementById(id);
+    if(!el) return;
+    lastFocus = document.activeElement;
+    el.classList.add('is-on');
+    var focusable = el.querySelector('input, textarea, button');
+    if(focusable){ setTimeout(function(){ focusable.focus(); }, 40); }
+  }
+  function closeModal(id){
+    var el = document.getElementById(id);
+    if(!el) return;
+    el.classList.remove('is-on');
+    if(lastFocus && lastFocus.focus){ lastFocus.focus(); }
+  }
+  document.addEventListener('click', function(e){
+    var closeBtn = e.target.closest('[data-close]');
+    if(closeBtn){ closeModal(closeBtn.getAttribute('data-close')); return; }
+    if(e.target.classList && e.target.classList.contains('tk-modal')){
+      e.target.classList.remove('is-on');
+    }
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){
+      var openModalEl = document.querySelector('.tk-modal.is-on');
+      if(openModalEl){ openModalEl.classList.remove('is-on'); }
+    }
+  });
+
+  /* ===== 评论弹窗 ===== */
+  var commentTarget = document.getElementById('tkCommentTarget');
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('.tk-comment-btn');
+    if(!btn) return;
+    var t = btn.getAttribute('data-title') || '这支影片';
+    if(commentTarget){ commentTarget.textContent = '针对《' + t + '》，说说你的观感。'; }
+    openModal('tkCommentModal');
+  });
+  var commentSubmit = document.getElementById('tkCommentSubmit');
+  if(commentSubmit){
+    commentSubmit.addEventListener('click', function(){
+      var name = (document.getElementById('tkCommentName') || {}).value || '';
+      var text = (document.getElementById('tkCommentText') || {}).value || '';
+      if(!name.trim() || !text.trim()){
+        showToast('昵称和评论内容都需要填写');
+        return;
+      }
+      closeModal('tkCommentModal');
+      showToast('评论已提交，审核通过后将展示');
+      document.getElementById('tkCommentText').value = '';
+    });
+  }
+
+  /* ===== 分享弹窗 ===== */
+  var shareTarget = document.getElementById('tkShareTarget');
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('.tk-share-btn');
+    if(!btn) return;
+    var t = btn.getAttribute('data-title') || '这支影片';
+    if(shareTarget){ shareTarget.textContent = '把《' + t + '》分享给朋友，选择一种方式：'; }
+    openModal('tkShareModal');
+  });
+  document.addEventListener('click', function(e){
+    var sh = e.target.closest('[data-share]');
+    if(!sh) return;
+    var way = sh.getAttribute('data-share');
+    if(way === '复制链接'){
+      var link = 'https://pinkrealm.example/share/' + Date.now().toString(36);
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(link).then(function(){
+          showToast('链接已复制，可粘贴分享');
+        }).catch(function(){
+          showToast('已生成分享链接，可手动复制');
+        });
+      } else {
+        showToast('已生成分享链接，可手动复制');
+      }
+    } else {
+      showToast('已唤起' + way + '分享面板（演示）');
+    }
+    closeModal('tkShareModal');
+  });
+
+  /* ===== 作者档案弹窗 ===== */
+  var authorBody = document.getElementById('tkAuthorModalBody');
+  var authorTitle = document.getElementById('tkAuthorModalTitle');
+  function openAuthor(card){
+    if(!card || !authorBody) return;
+    var name = card.getAttribute('data-author') || '创作者';
+    var field = card.getAttribute('data-field') || '';
+    if(authorTitle){ authorTitle.textContent = name + ' · 创作者档案'; }
+    authorBody.textContent = '擅长领域：' + field + '。该创作者在桃红色界吧持续更新原创作品，内容涵盖日常记录、方法分享与创作幕后。你可以通过作品页关注更新，也可以在评论区与作者交流。';
+    openModal('tkAuthorModal');
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.tk-author-trigger'), function(card){
+    card.addEventListener('click', function(){ openAuthor(card); });
+    card.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openAuthor(card); }
+    });
+  });
+
+  /* ===== 投稿弹窗 ===== */
+  var submitBtn = document.getElementById('tkSubmitBtn');
+  if(submitBtn){ submitBtn.addEventListener('click', function(){ openModal('tkSubmitModal'); }); }
+  var subSend = document.getElementById('tkSubSend');
+  if(subSend){
+    subSend.addEventListener('click', function(){
+      var n = (document.getElementById('tkSubName') || {}).value || '';
+      if(!n.trim()){ showToast('请先填写作品名称'); return; }
+      closeModal('tkSubmitModal');
+      showToast('投稿已提交，编辑将在 5-7 个工作日内回复');
+      document.getElementById('tkSubName').value = '';
+      document.getElementById('tkSubContact').value = '';
+      document.getElementById('tkSubDesc').value = '';
+    });
+  }
+
+  /* ===== 反馈弹窗 ===== */
+  var feedbackBtn = document.getElementById('tkFeedbackBtn');
+  if(feedbackBtn){ feedbackBtn.addEventListener('click', function(){ openModal('tkFeedbackModal'); }); }
+  var fbSend = document.getElementById('tkFbSend');
+  if(fbSend){
+    fbSend.addEventListener('click', function(){
+      var t = (document.getElementById('tkFbText') || {}).value || '';
+      if(!t.trim()){ showToast('请补充详细说明'); return; }
+      closeModal('tkFeedbackModal');
+      showToast('反馈已收到，我们会在 3 个工作日内处理');
+      document.getElementById('tkFbType').value = '';
+      document.getElementById('tkFbText').value = '';
+    });
+  }
+
+  /* ===== 订阅 ===== */
+  var subBtn = document.getElementById('tkSubscribeBtn');
+  if(subBtn){
+    subBtn.addEventListener('click', function(){
+      showToast('已订阅桃红色界吧内容日历，更新提醒将同步到站内');
+    });
+  }
+
+  /* ===== 回到顶部 ===== */
+  var topBtn = document.getElementById('tkTopBtn');
+  if(topBtn){
+    topBtn.addEventListener('click', function(){
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+    window.addEventListener('scroll', function(){
+      if(window.scrollY > 480){ topBtn.classList.add('is-on'); }
+      else { topBtn.classList.remove('is-on'); }
+    }, {passive:true});
+  }
+
+  /* ===== 数据数字滚动 ===== */
+  var counters = document.querySelectorAll('[data-count]');
+  if(counters.length && 'IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(!entry.isIntersecting) return;
+        var el = entry.target;
+        var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+        var start = null;
+        var dur = 1200;
+        function step(ts){
+          if(!start) start = ts;
+          var p = Math.min(1, (ts - start) / dur);
+          var eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(target * eased).toLocaleString('en-US');
+          if(p < 1){ requestAnimationFrame(step); }
+        }
+        requestAnimationFrame(step);
+        io.unobserve(el);
+      });
+    }, {threshold:.4});
+    Array.prototype.forEach.call(counters, function(c){ io.observe(c); });
+  } else {
+    Array.prototype.forEach.call(counters, function(c){
+      var t = parseInt(c.getAttribute('data-count'),10) || 0;
+      c.textContent = t.toLocaleString('en-US');
+    });
+  }
+
+})();
+</script>
+</body>
+  </html>
